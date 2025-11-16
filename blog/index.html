@@ -4,6 +4,20 @@ title: Blog
 ---
 
 <h1>Blog</h1>
+
+{%- assign all_tags = site.tags | sort -%}
+{%- if all_tags.size > 0 -%}
+  <div id="tag-filter" class="small" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px">
+    <button type="button" data-tag="all" class="tag">All</button>
+    {%- for tag in all_tags -%}
+      {%- assign tag_name = tag[0] -%}
+      <button type="button" data-tag="{{ tag_name | downcase }}" class="tag">
+        {{ tag_name }}
+      </button>
+    {%- endfor -%}
+  </div>
+{%- endif -%}
+
 <div style="display:grid;gap:16px">
   {% assign posts_sorted = site.posts | sort: 'date' | reverse %}
   {% for post in posts_sorted %}
@@ -11,11 +25,14 @@ title: Blog
     {% assign chars = post.content | strip_html | size %}
     {% assign mins = chars | divided_by: 1200 | plus: 1 %}
 
-    <article class="card">
+    <article
+      class="card"
+      data-tags="{% if post.tags %}{{ post.tags | join: ' ' | downcase }}{% endif %}"
+    >
       {% if post.cover %}
-        <img src="{{ post.cover | relative_url }}" alt="{{ post.title }} cover">
+        <img class="thumb" src="{{ post.cover | relative_url }}" alt="{{ post.title }} cover">
       {% else %}
-        <img src="https://via.placeholder.com/240x160?text=Post" alt="">
+        <div class="cover thumb" aria-hidden="true"></div>
       {% endif %}
 
       <div>
@@ -40,3 +57,30 @@ title: Blog
 
   {% endfor %}
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const buttons = document.querySelectorAll("#tag-filter [data-tag]");
+    const cards = document.querySelectorAll(".card[data-tags]");
+
+    if (!buttons.length || !cards.length) return;
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const tag = btn.getAttribute("data-tag");
+
+        // toggle active state
+        buttons.forEach(b => b.classList.remove("active-tag"));
+        btn.classList.add("active-tag");
+
+        cards.forEach(card => {
+          const cardTags = (card.getAttribute("data-tags") || "").split(" ");
+          const match = tag === "all" || cardTags.includes(tag);
+          card.style.display = match ? "" : "none";
+        });
+      });
+    });
+  });
+</script>
+
+
