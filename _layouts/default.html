@@ -1,28 +1,7 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-<!-- soft neon mesh -->
-<svg aria-hidden="true" style="position:fixed;inset:0;z-index:-2" viewBox="0 0 1200 800" preserveAspectRatio="none">
-  <defs>
-    <radialGradient id="g1" cx="25%" cy="20%">
-      <stop offset="0" stop-color="#7afcff" stop-opacity=".18"/><stop offset="1" stop-color="transparent"/>
-    </radialGradient>
-    <radialGradient id="g2" cx="80%" cy="70%">
-      <stop offset="0" stop-color="#ff77e9" stop-opacity=".12"/><stop offset="1" stop-color="transparent"/>
-    </radialGradient>
-  </defs>
-  <rect width="1200" height="800" fill="url(#g1)"/>
-  <rect width="1200" height="800" fill="url(#g2)"/>
-</svg>
-
-<!-- subtle noise -->
-<div aria-hidden="true" style="position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.06;
-  background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22><filter id=%22n%22><feTurbulence baseFrequency=%220.8%22 numOctaves=%222%22/></filter><rect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22 opacity=%220.35%22/></svg>');"></div>
-
+  <head>{% include head.html %}</head>
+  <body>
+    <main class="wrap">{{ content }}</main>
+  </body>
 </html>
