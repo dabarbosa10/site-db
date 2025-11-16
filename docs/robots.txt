@@ -1,1 +1,1 @@
-Sitemap: https://dabarbosa10.github.io/site-next/sitemap.xml
+Sitemap: https://dabarbosa10.github.io/site-db/sitemap.xml
