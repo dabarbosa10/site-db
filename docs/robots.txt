@@ -1,1 +1,1 @@
-Sitemap: https://dabarbosa10.github.io/site-db/sitemap.xml
+Sitemap: http://localhost:4000/site-db/sitemap.xml
