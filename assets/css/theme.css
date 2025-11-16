@@ -3,3 +3,16 @@ html,body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.6 syst
 a{color:var(--neon);text-decoration:none;background:linear-gradient(currentColor,currentColor) 0 100%/0 2px no-repeat;transition:background-size .18s}
 a:hover{background-size:100% 2px}
 .wrap{max-width:var(--max);margin:auto;padding:var(--s4)}
+
+
+:root{
+  --neon:#7afcff;
+}
+
+a{
+  color: var(--neon);
+  text-decoration: none;
+  background: linear-gradient(currentColor,currentColor) 0 100%/0 2px no-repeat;
+  transition: background-size .18s;
+}
+a:hover{ background-size: 100% 2px; }

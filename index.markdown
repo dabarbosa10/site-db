@@ -5,3 +5,9 @@
 layout: default
 title: Home
 ---
+
+
+# Hi, I’m Diego
+
+This is a quick test paragraph.  
+Visit the [blog]({{ '/blog/' | relative_url }}).
