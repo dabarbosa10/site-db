@@ -1,0 +1,42 @@
+---
+layout: default
+title: Blog
+---
+
+<h1>Blog</h1>
+<div style="display:grid;gap:16px">
+  {% assign posts_sorted = site.posts | sort: 'date' | reverse %}
+  {% for post in posts_sorted %}
+
+    {% assign chars = post.content | strip_html | size %}
+    {% assign mins = chars | divided_by: 1200 | plus: 1 %}
+
+    <article class="card">
+      {% if post.cover %}
+        <img src="{{ post.cover | relative_url }}" alt="{{ post.title }} cover">
+      {% else %}
+        <img src="https://via.placeholder.com/240x160?text=Post" alt="">
+      {% endif %}
+
+      <div>
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        <div class="meta">
+          {{ post.date | date: "%b %d, %Y" }} · {{ mins }} min read
+        </div>
+        <p>{{ post.description | default: post.excerpt | strip_html | truncate: 140 }}</p>
+
+        {% if post.tags and post.tags.size > 0 %}
+          <div class="tags">
+            {% for t in post.tags %}
+              <span class="tag">{{ t }}</span>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Make the whole card clickable -->
+      <a class="stretched" href="{{ post.url | relative_url }}" aria-label="{{ post.title }}"></a>
+    </article>
+
+  {% endfor %}
+</div>
